@@ -14,7 +14,7 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.21'
 end
 
 group :development, :test do
