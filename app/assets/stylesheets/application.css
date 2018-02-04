@@ -1,0 +1,52 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+body {
+  background-image: url('https://joannaandruben.uk/wp-content/uploads/2017/07/bg-glitter.jpg');
+  background-size: cover;
+  font-family: 'Roboto Slab';
+}
+
+.container {
+  margin-top: 5em;
+  margin-bottom: 5em;
+  padding: 5em 2.5em;
+  background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #3e495a;
+  letter-spacing: 0.15em;
+  font-family: Vidaloka, serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+h1 {
+  text-align: center;
+}
+
+.btn-luxe, .btn-luxe:hover, .btn-luxe:active, .btn-luxe:focus {
+  color: #c8b46f;
+  border-color: #c8b46f;
+  background-color: #fff;
+  border-width: 3px;
+  border-radius: 0;
+  text-transform: uppercase;
+}
+
+.card, .centered {
+  text-align: center;
+}

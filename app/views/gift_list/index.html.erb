@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md">
+    <p class="centered"><%= t(:intro) %></p>
+  </div>
+</div>
+
+<div class="row">
+  <% @gifts.each do |gift| %>
+    <div class="col-md">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="<%= image_path(gift.image_url) %>" alt="<%= gift.name %>">
+        <div class="card-body">
+          <h5 class="card-title"><%= gift.name %></h5>
+          <p class="card-text"><%= gift.description %></p>
+          <p class="card-text"><strong>
+            <% if gift.unavailable? %>
+            <%= t(:unavailable) %>
+            <% elsif gift.purchases? %>
+            £<%= gift.human_price_remaining %> <%= t(:left_of) %> £<%= gift.human_price %>
+            <% else %>
+            £<%= gift.human_price %>
+            <% end %>
+          </strong></p>
+          <% if gift.available? %>
+          <form action="<%= pay_path %>" method="get">
+            <input type="hidden" name="gift_id" value="<%= gift.id %>">
+            <div class="form-group">
+              <label for="form-paid"><%= t(:id_like_to_pay) %></label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">£</div>
+                </div>
+                <input type="number" name="paying" value="<%= gift.human_price_remaining %>" min="1" max="<%= gift.human_price_remaining %>" id="form-paid" class="form-control">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-luxe"><%= t(:buy_this_gift) %></button>
+          </form>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

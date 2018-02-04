@@ -1,0 +1,81 @@
+<% if flash[:error].present? %>
+  <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+<% end %>
+
+<div class="row">
+  <div class="col-md">
+    <p><%= t(:paying, paying: @human_paying, gift_name: @gift.name) %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md">
+    <%= form_tag pay_stripe_path, id: 'payment-form' do %>
+    <input type="hidden" name="gift_id" value="<%= @gift.id %>">
+    <input type="hidden" name="paying" value="<%= @paying %>">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="form-guest-name"><%= t(:your_name) %></label>
+          <input type="text" name="guest_name" value="<%= params[:guest_name] %>" id="form-guest-name" class="form-control" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="form-guest-email-address"><%= t(:your_email_address) %></label>
+          <input type="email" name="guest_email_address" value="<%= params[:guest_email_address] %>" id="form-guest-email-address" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="form-message"><%= t(:an_optional_message) %></label>
+        <textarea name="message" id="form-message" class="form-control"><%= params[:message] %></textarea>
+      </div>
+      <div class="form-group">
+        <label for="card-element"><%= t(:your_card_details) %></label>
+        <div id="card-element"></div>
+        <div id="card-errors" class="invalid-feedback" role="alert"></div>
+      </div>
+      <button type="submit" class="btn btn-luxe"><%= t(:pay) %> £<%= @human_paying %></button>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  // Set up Stripe card input
+  var stripe = Stripe('<%= Rails.configuration.stripe[:publishable_key] %>');
+  var elements = stripe.elements();
+  var classes = {
+    base: 'form-control',
+    invalid: 'is-invalid'
+  }
+  var style = {
+    base: {
+      fontSize: '16px'
+    }
+  };
+  var card = elements.create('card', { classes: classes, style: style });
+  card.mount('#card-element');
+  // Display any card input error messages
+  card.addEventListener('change', function(event) {
+    var displayError = $('#card-errors');
+    if (event.error) {
+      displayError.text(event.error.message);
+    } else {
+      displayError.text('');
+    }
+  });
+  // Tokenise the payment method and submit the form
+  document.getElementById('payment-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    stripe.createToken(card, { currency: 'gbp' }).then(function(result) {
+      if (result.error) {
+        $('#card-errors').text(result.error.message);
+      } else {
+        var form = $('#payment-form');
+        var hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('value', result.token.id);
+        form.append(hiddenInput);
+        form.submit();
+      }
+    });
+  });
+</script>

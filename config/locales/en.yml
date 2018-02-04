@@ -1,0 +1,47 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  title: Joanna & Ruben's Gift List
+  intro: For each gift, you can choose to either buy it outright or contribute an amount of your choice towards it.
+  unavailable: Unavailable
+  left_of: left of
+  id_like_to_pay: I'd like to pay
+  buy_this_gift: Buy this gift
+  paying: You are paying £%{paying} for a %{gift_name}.
+  your_name: Your name
+  your_email_address: Your email address
+  an_optional_message: An optional message
+  your_card_details: Your card details
+  pay: Pay
+  error_missing_guest_name_email_address: Please fill in your name and email address
+  thank_you: '%{guest_name}, thank you for your contribution to help us as we start married life.'
+  back_to_our_wedding_website: Back to our wedding website
