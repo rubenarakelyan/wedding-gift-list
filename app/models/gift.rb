@@ -1,7 +1,7 @@
 class Gift < ApplicationRecord
   has_many :purchased_gifts
   has_many :guests, through: :purchased_gift
-  validates :name, :description, :price, :image_url, presence: true
+  validates :name, :price, :image_url, presence: true
   validates :price, numericality: { only_integer: true }
 
   def human_price
