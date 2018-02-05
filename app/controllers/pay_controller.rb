@@ -1,7 +1,8 @@
 class PayController < ApplicationController
   def index
     @gift = Gift.find(params[:gift_id])
-    @paying = validate_paying(@gift, params[:paying])
+    machine_amount = convert_amount_from_human_to_machine(params[:paying])
+    @paying = validate_paying(@gift, machine_amount)
     @human_paying = human_paying(@paying)
     redirect_to '/' if @paying < 100
   end
@@ -33,8 +34,12 @@ class PayController < ApplicationController
 
 private
 
-  def validate_paying(gift, amount)
+  def convert_amount_from_human_to_machine(amount)
     amount = amount.to_i * 100
+    amount
+  end
+
+  def validate_paying(gift, amount)
     amount = gift.price_remaining if amount > gift.price_remaining
     amount
   end
