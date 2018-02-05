@@ -40,6 +40,7 @@ private
   end
 
   def validate_paying(gift, amount)
+    amount = amount.to_i
     amount = gift.price_remaining if amount > gift.price_remaining
     amount
   end
