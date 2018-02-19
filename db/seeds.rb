@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-gift = Gift.create(name: "Dyson v7", description: "A very nice cordless vacuum cleaner", price: 50000, image_url: "sample/dyson-v7.jpg")
-guest_1 = Guest.create(name: "Ruben Arakelyan", email_address: "ruben@arakelyan.uk")
-guest_2 = Guest.create(name: "Joanna Ireland", email_address: "joanna@example.com")
-purchased_gift_1 = PurchasedGift.create(gift: gift, guest: guest_1, paid: 25000, message: "Have a great day!")
-purchased_gift_2 = PurchasedGift.create(gift: gift, guest: guest_2, paid: 10000, message: "Me too!")
+gift = Gift.create(name: 'Dyson v7', description: 'A very nice cordless vacuum cleaner', price: 50_000, image_url: 'sample/dyson-v7.jpg')
+guest1 = Guest.create(name: 'Ruben Arakelyan', email_address: 'ruben@arakelyan.uk')
+guest2 = Guest.create(name: 'Joanna Ireland', email_address: 'joanna@example.com')
+PurchasedGift.create(gift: gift, guest: guest1, paid: 25_000, message: 'Have a great day!')
+PurchasedGift.create(gift: gift, guest: guest2, paid: 10_000, message: 'Me too!')

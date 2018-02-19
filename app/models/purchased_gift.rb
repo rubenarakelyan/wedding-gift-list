@@ -5,7 +5,7 @@ class PurchasedGift < ApplicationRecord
   validates :paid, numericality: { only_integer: true }
   before_create :generate_transaction_id
 
-private
+  private
 
   def generate_transaction_id
     self.transaction_id = SecureRandom.uuid

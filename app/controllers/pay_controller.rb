@@ -17,7 +17,7 @@ class PayController < ApplicationController
       flash[:error] = t(:error_missing_guest_name_email_address)
       @paying = validate_paying(@gift, params[:paying])
       @human_paying = human_paying(@paying)
-      render action: :index and return
+      render action: :index && return
     end
 
     amount = validate_paying(@gift, params[:paying])
@@ -32,7 +32,7 @@ class PayController < ApplicationController
     @gift = purchased_gift.gift
   end
 
-private
+  private
 
   def convert_amount_from_human_to_machine(amount)
     amount = amount.to_i * 100
@@ -51,17 +51,16 @@ private
 
   def stripe_charge(gift, amount, email, stripe_token)
     customer = Stripe::Customer.create(
-      :email => email,
-      :source  => stripe_token
+      email: email,
+      source: stripe_token
     )
 
-    charge = Stripe::Charge.create(
-      :customer    => customer.id,
-      :amount      => amount,
-      :description => gift.name,
-      :currency    => 'gbp'
+    Stripe::Charge.create(
+      customer: customer.id,
+      amount: amount,
+      description: gift.name,
+      currency: 'gbp'
     )
-
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to pay_path, gift_id: gift.id, paying: human_paying(amount)

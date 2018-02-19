@@ -21,7 +21,7 @@ class Gift < ApplicationRecord
   end
 
   def available?
-    price_remaining > 0
+    price_remaining.positive?
   end
 
   def unavailable?
