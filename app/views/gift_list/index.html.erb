@@ -25,12 +25,12 @@
           <form action="<%= pay_path %>" method="get">
             <input type="hidden" name="gift_id" value="<%= gift.id %>">
             <div class="form-group">
-              <label for="form-paid"><%= t(:id_like_to_pay) %></label>
+              <label for="form-paid-<%= gift.id %>"><%= t(:id_like_to_pay) %></label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">£</div>
                 </div>
-                <input type="number" name="paying" value="<%= gift.human_price_remaining %>" min="1" max="<%= gift.human_price_remaining %>" id="form-paid" class="form-control">
+                <input type="number" name="paying" value="<%= gift.human_price_remaining %>" min="1" max="<%= gift.human_price_remaining %>" id="form-paid-<%= gift.id %>" class="form-control">
               </div>
             </div>
             <button type="submit" class="btn btn-luxe"><%= t(:buy_this_gift) %></button>
