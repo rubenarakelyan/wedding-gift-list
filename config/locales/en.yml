@@ -31,6 +31,7 @@
 
 en:
   title: Joanna & Ruben's Gift List
+  footer_html: Built by <a href="https://ruben.am/" target="_blank">Ruben Arakelyan</a>.
   intro: For each gift, you can choose to either buy it outright or contribute an amount of your choice towards it.
   unavailable: Purchased
   x_left_of_y: £%{remaining_amount} left of £%{total_amount}
