@@ -36,7 +36,7 @@ en:
   x_left_of_y: £%{remaining_amount} left of £%{total_amount}
   id_like_to_pay: I'd like to pay
   you_can_change_this: You can change this to anything up to £%{total_amount}
-  buy_this_gift: Buy this gift
+  pay_towards_this_gift: Pay towards this gift
   paying: You are paying £%{paying} for a %{gift_name}.
   your_name: Your name
   your_email_address: Your email address
