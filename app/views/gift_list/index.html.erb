@@ -30,7 +30,8 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text">£</div>
                 </div>
-                <input type="number" name="paying" value="<%= gift.human_price_remaining %>" min="1" max="<%= gift.human_price_remaining %>" id="form-paid-<%= gift.id %>" class="form-control">
+                <input type="number" name="paying" value="<%= gift.human_price_remaining %>" min="1" max="<%= gift.human_price_remaining %>" id="form-paid-<%= gift.id %>" class="form-control" aria-describedby="you-can-change-this-<%= gift.id %>">
+                <small id="you-can-change-this-<%= gift.id %>" class="form-text"><%= t(:you_can_change_this, total_amount: gift.human_price_remaining) %></small>
               </div>
             </div>
             <button type="submit" class="btn btn-luxe"><%= t(:buy_this_gift) %></button>
