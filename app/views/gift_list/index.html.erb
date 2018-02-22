@@ -16,7 +16,7 @@
             <% if gift.unavailable? %>
             <%= t(:unavailable) %>
             <% elsif gift.purchases? %>
-            £<%= gift.human_price_remaining %> <%= t(:left_of) %> £<%= gift.human_price %>
+            <%= t(:x_left_of_y, remaining_amount: gift.human_price_remaining, total_amount: gift.human_price) %>
             <% else %>
             £<%= gift.human_price %>
             <% end %>
