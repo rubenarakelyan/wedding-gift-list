@@ -1,5 +1,5 @@
 class GiftListController < ApplicationController
   def index
-    @gifts = Gift.all.order(:created_at)
+    @gifts = Gift.all.order(:updated_at)
   end
 end
