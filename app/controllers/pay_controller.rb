@@ -28,6 +28,7 @@ class PayController < ApplicationController
 
   def thanks
     purchased_gift = PurchasedGift.find_by(transaction_id: params[:transaction_id])
+    redirect_to '/' if purchased_gift.nil?
     @guest = purchased_gift.guest
     @gift = purchased_gift.gift
   end
